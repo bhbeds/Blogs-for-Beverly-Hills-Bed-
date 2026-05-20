@@ -1,0 +1,320 @@
+<!-- ============================================================
+     BEVERLY HILLS BED — SHOPIFY BLOG POST
+     Best Adjustable Beds for Seniors: Safety, Comfort, and Independence (2026 Guide)
+     Paste everything between the <body> tags into the Shopify HTML editor.
+     ============================================================ -->
+
+<style>
+  /* ── Reset & base ── */
+  .bhb-blog * { box-sizing: border-box; margin: 0; padding: 0; }
+  .bhb-blog { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.7; max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+  /* ── Infographic wrapper ── */
+  .bhb-infographic { background: #1a1f1e; color: #e8e8e8; border-radius: 12px; padding: 32px 28px; margin: 40px 0; }
+  .bhb-infographic-label { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9ea8a4; margin-bottom: 20px; }
+
+  /* ── Stat boxes ── */
+  .bhb-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 600px) { .bhb-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bhb-stat-box { background: #252b29; border-radius: 8px; padding: 18px 12px; text-align: center; }
+  .bhb-stat-number { font-family: Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1.1; }
+  .bhb-stat-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #9ea8a4; margin-top: 8px; line-height: 1.4; }
+
+  /* ── Comparison cards ── */
+  .bhb-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .bhb-compare-grid { grid-template-columns: 1fr; } }
+  .bhb-compare-card { background: #252b29; border-radius: 10px; padding: 22px 20px; }
+  .bhb-compare-card.featured { border: 2px solid #22c97a; }
+  .bhb-badge { display: inline-block; background: #22c97a; color: #1a1f1e; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.04em; }
+  .bhb-compare-card h3 { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 16px; }
+  .bhb-feature-list { list-style: none; }
+  .bhb-feature-list li { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #c8d0cc; padding: 5px 0; display: flex; align-items: center; gap: 10px; }
+  .bhb-check { color: #22c97a; font-size: 15px; flex-shrink: 0; }
+  .bhb-cross { color: #e05555; font-size: 15px; flex-shrink: 0; }
+
+  /* ── Impact bars ── */
+  .bhb-divider { border: none; border-top: 1px solid #2e3634; margin: 24px 0; }
+  .bhb-bar-row { margin-bottom: 16px; }
+  .bhb-bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .bhb-bar-label { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #c8d0cc; }
+  .bhb-bar-pct { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; }
+  .bhb-bar-track { background: #2e3634; border-radius: 4px; height: 8px; }
+  .bhb-bar-fill { background: #22c97a; border-radius: 4px; height: 8px; }
+
+  /* ── Who Benefits grid ── */
+  .bhb-who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  @media (max-width: 600px) { .bhb-who-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bhb-who-card { background: #252b29; border-radius: 8px; padding: 14px 12px; display: flex; align-items: center; gap: 10px; }
+  .bhb-who-icon { font-size: 18px; flex-shrink: 0; }
+  .bhb-who-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #c8d0cc; line-height: 1.3; }
+
+  /* ── Sizes grid ── */
+  .bhb-sizes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 600px) { .bhb-sizes-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bhb-size-card { background: #252b29; border-radius: 8px; padding: 18px 12px; text-align: center; }
+  .bhb-size-name { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+  .bhb-size-desc { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #9ea8a4; line-height: 1.4; }
+
+  /* ── Blog prose ── */
+  .bhb-prose { font-size: 16px; color: #1a1a1a; line-height: 1.8; }
+  .bhb-prose h1 { font-size: 28px; font-weight: 800; line-height: 1.25; margin-bottom: 18px; color: #111; }
+  .bhb-prose h2 { font-size: 21px; font-weight: 700; margin: 36px 0 12px; color: #111; }
+  .bhb-prose p { margin-bottom: 16px; }
+  .bhb-prose strong { font-weight: 700; }
+  .bhb-prose ul { margin: 12px 0 16px 24px; }
+  .bhb-prose ul li { margin-bottom: 8px; }
+  .bhb-prose hr { border: none; border-top: 1px solid #ddd; margin: 32px 0; }
+
+  /* ── FAQ ── */
+  .bhb-faq { border-top: 1px solid #ddd; margin-top: 40px; }
+  .bhb-faq-item { border-bottom: 1px solid #ddd; padding: 18px 0; }
+  .bhb-faq-q { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 8px; }
+  .bhb-faq-a { font-size: 15px; color: #444; line-height: 1.7; }
+</style>
+
+<div class="bhb-blog">
+
+  <!-- ════════════════════════════════
+       INFOGRAPHIC 1 — WHY SENIORS NEED AN ADJUSTABLE BED
+       ════════════════════════════════ -->
+  <div class="bhb-infographic">
+    <div class="bhb-infographic-label">Why Seniors Need an Adjustable Bed</div>
+    <div class="bhb-stats-grid">
+      <div class="bhb-stat-box">
+        <div class="bhb-stat-number">36M</div>
+        <div class="bhb-stat-label">senior falls reported annually in the US</div>
+      </div>
+      <div class="bhb-stat-box">
+        <div class="bhb-stat-number">80%</div>
+        <div class="bhb-stat-label">of seniors report sleep difficulties</div>
+      </div>
+      <div class="bhb-stat-box">
+        <div class="bhb-stat-number">#1</div>
+        <div class="bhb-stat-label">reason for caregiver injury: unsafe transfers</div>
+      </div>
+      <div class="bhb-stat-box">
+        <div class="bhb-stat-number">2x</div>
+        <div class="bhb-stat-label">safer bed entry with hi-low height adjustment</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       INFOGRAPHIC 2 — COMPARISON
+       ════════════════════════════════ -->
+  <div class="bhb-infographic">
+    <div class="bhb-infographic-label">Standard Adjustable Base vs Hi-Low Senior Bed</div>
+    <div class="bhb-compare-grid">
+      <div class="bhb-compare-card">
+        <h3>Standard adjustable base</h3>
+        <ul class="bhb-feature-list">
+          <li><span class="bhb-check">✓</span> Head &amp; foot elevation</li>
+          <li><span class="bhb-check">✓</span> Zero gravity position</li>
+          <li><span class="bhb-check">✓</span> Massage features</li>
+          <li><span class="bhb-cross">✗</span> Full height adjustment</li>
+          <li><span class="bhb-cross">✗</span> Fall prevention design</li>
+          <li><span class="bhb-cross">✗</span> Safety rails included</li>
+          <li><span class="bhb-cross">✗</span> Caregiver height control</li>
+        </ul>
+      </div>
+      <div class="bhb-compare-card featured">
+        <div class="bhb-badge">best for seniors</div>
+        <h3>Hi-low adjustable senior bed</h3>
+        <ul class="bhb-feature-list">
+          <li><span class="bhb-check">✓</span> Head &amp; foot elevation</li>
+          <li><span class="bhb-check">✓</span> Zero gravity position</li>
+          <li><span class="bhb-check">✓</span> Massage features</li>
+          <li><span class="bhb-check">✓</span> Full height adjustment</li>
+          <li><span class="bhb-check">✓</span> Fall prevention design</li>
+          <li><span class="bhb-check">✓</span> Safety rails included</li>
+          <li><span class="bhb-check">✓</span> Caregiver height control</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       INFOGRAPHIC 3 — IMPACT RATING + WHO BENEFITS
+       ════════════════════════════════ -->
+  <div class="bhb-infographic">
+    <div class="bhb-infographic-label">Key Benefits for Seniors — Impact Rating</div>
+
+    <div class="bhb-bar-row">
+      <div class="bhb-bar-header"><span class="bhb-bar-label">Fall risk reduction</span><span class="bhb-bar-pct">95%</span></div>
+      <div class="bhb-bar-track"><div class="bhb-bar-fill" style="width:95%"></div></div>
+    </div>
+    <div class="bhb-bar-row">
+      <div class="bhb-bar-header"><span class="bhb-bar-label">Back pain relief</span><span class="bhb-bar-pct">88%</span></div>
+      <div class="bhb-bar-track"><div class="bhb-bar-fill" style="width:88%"></div></div>
+    </div>
+    <div class="bhb-bar-row">
+      <div class="bhb-bar-header"><span class="bhb-bar-label">Sleep quality improvement</span><span class="bhb-bar-pct">82%</span></div>
+      <div class="bhb-bar-track"><div class="bhb-bar-fill" style="width:82%"></div></div>
+    </div>
+    <div class="bhb-bar-row">
+      <div class="bhb-bar-header"><span class="bhb-bar-label">Caregiver strain reduction</span><span class="bhb-bar-pct">79%</span></div>
+      <div class="bhb-bar-track"><div class="bhb-bar-fill" style="width:79%"></div></div>
+    </div>
+    <div class="bhb-bar-row">
+      <div class="bhb-bar-header"><span class="bhb-bar-label">Independence &amp; confidence</span><span class="bhb-bar-pct">91%</span></div>
+      <div class="bhb-bar-track"><div class="bhb-bar-fill" style="width:91%"></div></div>
+    </div>
+
+    <hr class="bhb-divider">
+
+    <div class="bhb-infographic-label" style="margin-bottom:16px;">Who Benefits Most</div>
+    <div class="bhb-who-grid">
+      <div class="bhb-who-card"><span class="bhb-who-icon">♿</span><span class="bhb-who-label">Limited mobility seniors</span></div>
+      <div class="bhb-who-card"><span class="bhb-who-icon">🏥</span><span class="bhb-who-label">Post-surgery recovery</span></div>
+      <div class="bhb-who-card"><span class="bhb-who-icon">🌙</span><span class="bhb-who-label">Chronic back pain sufferers</span></div>
+      <div class="bhb-who-card"><span class="bhb-who-icon">👥</span><span class="bhb-who-label">Caregiver households</span></div>
+      <div class="bhb-who-card"><span class="bhb-who-icon">🏠</span><span class="bhb-who-label">Full-time home care</span></div>
+      <div class="bhb-who-card"><span class="bhb-who-icon">💗</span><span class="bhb-who-label">Hospice &amp; palliative care</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       INFOGRAPHIC 4 — AVAILABLE SIZES
+       ════════════════════════════════ -->
+  <div class="bhb-infographic">
+    <div class="bhb-infographic-label">Available Sizes</div>
+    <div class="bhb-sizes-grid">
+      <div class="bhb-size-card">
+        <div class="bhb-size-name">Twin</div>
+        <div class="bhb-size-desc">Single sleepers &amp; smaller rooms</div>
+      </div>
+      <div class="bhb-size-card">
+        <div class="bhb-size-name">Full</div>
+        <div class="bhb-size-desc">More space, same safety features</div>
+      </div>
+      <div class="bhb-size-card">
+        <div class="bhb-size-name">Queen</div>
+        <div class="bhb-size-desc">Most popular for couples</div>
+      </div>
+      <div class="bhb-size-card">
+        <div class="bhb-size-name">Split King</div>
+        <div class="bhb-size-desc">Independent controls per side</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       BLOG POST PROSE
+       ════════════════════════════════ -->
+  <div class="bhb-prose">
+
+    <h1>Best Adjustable Beds for Seniors: Safety, Comfort, and Independence (2026 Guide)</h1>
+
+    <p>Getting in and out of bed is one of the most common — and most dangerous — daily challenges for seniors. Falls during nighttime movement account for a significant portion of senior injuries every year, and poor sleep compounds the problem by affecting balance, cognition, and overall health.</p>
+
+    <p>The right adjustable bed for seniors doesn't just improve sleep. It reduces fall risk, supports caregiver safety, and helps seniors maintain independence at home longer. This guide covers everything you need to know to choose the best option.</p>
+
+    <hr>
+
+    <h2>What Makes an Adjustable Bed "Best" for Seniors?</h2>
+
+    <p>Not all adjustable beds are equal. A standard adjustable base — the kind that elevates your head and feet — is a good sleep upgrade, but it doesn't address the specific safety and mobility challenges seniors face.</p>
+
+    <p>The best adjustable beds for seniors add one critical feature: <strong>full vertical height adjustment</strong>. This means the entire bed frame raises and lowers — from near floor level all the way to a comfortable standing height — using a remote control. That single feature transforms how safely a senior gets in and out of bed every day.</p>
+
+    <p>Here's what to look for:</p>
+
+    <p><strong>Full hi-low height adjustment</strong> — the whole bed rises and lowers, not just the head and foot sections. This is the most important feature for fall prevention and caregiver assistance.</p>
+
+    <p><strong>Built-in safety rails</strong> — side rails give seniors something sturdy to grip when transitioning from lying to sitting to standing. These should be included, not an expensive add-on.</p>
+
+    <p><strong>Head and foot articulation</strong> — standard adjustable base features like head elevation (reduces snoring, acid reflux) and foot elevation (improves circulation) are still valuable and should be included.</p>
+
+    <p><strong>Zero gravity positioning</strong> — distributes body weight evenly to reduce pressure on the spine and joints, especially beneficial for seniors with arthritis or back pain.</p>
+
+    <p><strong>Voice control and wireless remote</strong> — simple controls matter. The best senior adjustable beds work with voice commands so seniors don't have to fumble with complicated remotes in the dark.</p>
+
+    <p><strong>Residential design</strong> — it should look like a real bed, not a hospital room. Seniors deserve comfort and dignity in their own bedroom.</p>
+
+    <hr>
+
+    <h2>Hi-Low Adjustable Beds vs Standard Adjustable Bases: What's the Difference?</h2>
+
+    <p>This is the question most people get wrong when shopping for adjustable beds for seniors.</p>
+
+    <p>A standard adjustable base tilts the head and foot sections up and down. It's excellent for sleep comfort — zero gravity positioning, anti-snore elevation, massage features — but the height of the bed frame itself stays fixed. Getting in and out requires the same effort as a regular bed.</p>
+
+    <p>A hi-low adjustable senior bed does everything a standard adjustable base does, and adds full vertical height movement. The entire sleeping surface can lower to within a few inches of the floor — dramatically reducing injury risk if a fall does happen — and raise to a height that makes standing up easy and safe.</p>
+
+    <p>For seniors living independently at home, that height adjustment is the difference between a good night's sleep and a dangerous one.</p>
+
+    <hr>
+
+    <h2>Best Adjustable Beds for Seniors at Beverly Hills Bed</h2>
+
+    <h3 style="font-size:17px; font-weight:700; margin:20px 0 8px;">"Luxurious Model" Hi-Low Lift Bed with Voice Control</h3>
+
+    <p>Our most popular senior adjustable bed combines the full hi-low height system with head and foot articulation, zero gravity positioning, massage, and voice control — all in a design that looks beautiful in any bedroom.</p>
+
+    <p>Free white glove installation is included. No tools, no setup stress.</p>
+
+    <p>Available in twin, full, queen, and split king sizes. Safety rails included at no extra cost.</p>
+
+    <p><strong>Best for:</strong> Seniors who want the full package — safety, comfort, luxury, and smart home integration.</p>
+
+    <hr>
+
+    <h2>How to Choose the Right Size</h2>
+
+    <p><strong>Twin</strong> — the right choice for a single sleeper in a smaller room, or for a care setting where floor space is limited. Easier for caregivers to access from both sides.</p>
+
+    <p><strong>Full</strong> — more sleeping surface for single seniors who like space, without losing any of the safety features.</p>
+
+    <p><strong>Queen</strong> — the most popular choice for couples. Both partners benefit from head and foot elevation; one partner's mobility needs don't compromise comfort for both.</p>
+
+    <p><strong>Split King</strong> — the best option for couples with different needs. Each side operates independently — one partner can raise their head while the other lies flat, and hi-low height on each side can be set separately.</p>
+
+    <hr>
+
+    <h2>What to Expect: Setup and Installation</h2>
+
+    <p>All Beverly Hills Bed senior adjustable beds come with free white glove delivery and installation. Our team sets everything up in your bedroom, tests every function, and walks you and your family through the remote and voice controls before they leave.</p>
+
+    <p>There's no assembly required, no heavy lifting, and no learning curve. Most families tell us it takes less than an hour from delivery to the bed being fully ready to use.</p>
+
+    <hr>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="bhb-faq">
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">Does Medicare or insurance cover a hi-low adjustable bed for seniors?</div>
+        <div class="bhb-faq-a">Medicare does not typically cover adjustable beds purchased for home use unless prescribed as durable medical equipment (DME) through a specific medical supplier. Some long-term care insurance policies may include coverage. We recommend checking with your insurer directly. Many families use HSA or FSA funds, which can apply to medically necessary equipment.</div>
+      </div>
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">How low does the bed go, and is it truly floor-level safe?</div>
+        <div class="bhb-faq-a">Our hi-low beds lower to approximately 6–9 inches from the floor at the lowest setting. This dramatically reduces the impact of any accidental fall compared to a standard bed height of 24–30 inches. The lowest setting is also used for seniors who feel more secure sleeping closer to the floor.</div>
+      </div>
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">Can the safety rails be removed or adjusted?</div>
+        <div class="bhb-faq-a">Yes. The included safety rails are designed to fold down or detach completely when not needed. This is useful during caregiver transfers or if the senior's mobility improves over time.</div>
+      </div>
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">What mattress works with a hi-low adjustable bed?</div>
+        <div class="bhb-faq-a">Any mattress labeled "adjustable base compatible" will work. Memory foam, latex, and hybrid mattresses all flex properly. Standard innerspring or pillow-top mattresses are generally not compatible. We can recommend mattresses at the time of purchase if needed.</div>
+      </div>
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">Is voice control easy enough for seniors who aren't tech-savvy?</div>
+        <div class="bhb-faq-a">Yes. The voice commands are simple and natural — "raise the bed," "zero gravity position," "lower the head" — and work with both Amazon Alexa and Google Assistant. The wireless remote is also designed with large, clearly labeled buttons for use without any smart home setup.</div>
+      </div>
+
+      <div class="bhb-faq-item">
+        <div class="bhb-faq-q">What's the weight capacity?</div>
+        <div class="bhb-faq-a">Our hi-low senior beds support up to 600 lbs (combined or single sleeper depending on configuration). For bariatric needs, please contact us directly as we have specialist options available.</div>
+      </div>
+
+    </div>
+
+  </div><!-- end .bhb-prose -->
+
+</div><!-- end .bhb-blog -->
