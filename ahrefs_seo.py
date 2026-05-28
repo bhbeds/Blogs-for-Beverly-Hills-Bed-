@@ -3,11 +3,17 @@
 Ahrefs API v3 - SEO research tool for Beverly Hills Bed & Breakfast blogs.
 Usage: python ahrefs_seo.py <command> [options]
 
-Set AHREFS_API_KEY environment variable before running.
+Set AHREFS_API_KEY in a .env file or as an environment variable.
 """
 
 import os
 import sys
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv optional; fall back to environment variables
 import json
 import argparse
 import urllib.request
