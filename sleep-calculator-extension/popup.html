@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sleep Calculator – Beverly Hills Bed</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --deep: #142032;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --muted: #8a9bb0;
+      --card: #182738;
+      --glow: rgba(201,168,76,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 340px;
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+    }
+
+    /* Starfield background */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle var(--dur) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: var(--max-opacity); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 20px 22px 18px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      box-shadow: 0 0 12px var(--glow);
+    }
+    .brand-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .brand-name span {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .moon-badge {
+      font-size: 22px;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Title */
+    .title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* Mode toggle */
+    .mode-toggle {
+      display: flex;
+      background: var(--card);
+      border-radius: 10px;
+      padding: 3px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 7px 0;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.25s;
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* Input section */
+    .input-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .time-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .time-input-wrap:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--glow);
+    }
+    .time-input-wrap .icon { font-size: 18px; }
+    .time-input-wrap input[type="time"] {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--cream);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color-scheme: dark;
+    }
+
+    /* Also include fall asleep time for wake-up mode */
+    .sleep-offset-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .sleep-offset-row label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .offset-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .offset-btn {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: transparent;
+      color: var(--gold);
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .offset-btn:hover {
+      background: var(--glow);
+      border-color: var(--gold);
+    }
+    .offset-val {
+      font-size: 13px;
+      color: var(--cream);
+      min-width: 55px;
+      text-align: center;
+    }
+
+    /* Calculate button */
+    .calc-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border: none;
+      border-radius: 12px;
+      color: var(--navy);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 4px 16px rgba(201,168,76,0.25);
+    }
+    .calc-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(201,168,76,0.35);
+    }
+    .calc-btn:active { transform: translateY(0); }
+
+    /* Results */
+    .results {
+      display: none;
+      margin-top: 16px;
+    }
+    .results.visible { display: block; }
+
+    .results-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .times-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .time-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 10px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .time-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .time-card:hover::before { opacity: 0.08; }
+    .time-card.best {
+      border-color: var(--gold);
+      box-shadow: 0 0 14px var(--glow);
+    }
+    .time-card.best::after {
+      content: '★';
+      position: absolute;
+      top: 4px; right: 6px;
+      font-size: 8px;
+      color: var(--gold);
+    }
+    .cycle-count {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      position: relative; z-index: 1;
+    }
+    .time-display {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--cream);
+      position: relative; z-index: 1;
+    }
+    .time-card.best .time-display { color: var(--gold-light); }
+    .sleep-duration {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 2px;
+      position: relative; z-index: 1;
+    }
+
+    /* Tip */
+    .tip-box {
+      background: var(--card);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 9px 12px;
+      margin-bottom: 14px;
+    }
+    .tip-box p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .tip-box strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    /* Footer CTA */
+    .footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-cta:hover {
+      background: rgba(201,168,76,0.12);
+      border-color: rgba(201,168,76,0.3);
+    }
+    .footer-cta span {
+      font-size: 11px;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+    }
+    .footer-cta .arrow {
+      font-size: 13px;
+      color: var(--gold);
+      transition: transform 0.2s;
+    }
+    .footer-cta:hover .arrow { transform: translateX(3px); }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+      margin: 14px 0;
+    }
+
+    /* Copied toast */
+    .toast {
+      position: fixed;
+      bottom: 12px; left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 20px;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Starfield -->
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <a class="brand" href="https://www.beverlyhillsbed.com" target="_blank">
+      <div class="brand-icon">🛏</div>
+      <div class="brand-name">
+        Beverly Hills Bed
+        <span>Sleep Calculator</span>
+      </div>
+    </a>
+    <div class="moon-badge">🌙</div>
+  </div>
+
+  <!-- Title -->
+  <div class="title">Wake up <em>refreshed.</em></div>
+  <div class="subtitle">Based on 90-min sleep cycles</div>
+
+  <!-- Mode Toggle -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="btn-wakeup" onclick="setMode('wakeup')">I want to wake up at…</button>
+    <button class="mode-btn" id="btn-sleep" onclick="setMode('sleep')">I'm going to bed at…</button>
+  </div>
+
+  <!-- Input -->
+  <div class="input-label" id="input-label">What time do you need to wake up?</div>
+  <div class="time-input-wrap">
+    <span class="icon" id="input-icon">⏰</span>
+    <input type="time" id="time-input" value="07:00" />
+  </div>
+
+  <!-- Fall asleep offset -->
+  <div class="sleep-offset-row">
+    <label>Time to fall asleep</label>
+    <div class="offset-control">
+      <button class="offset-btn" onclick="changeOffset(-5)">−</button>
+      <span class="offset-val" id="offset-display">14 mins</span>
+      <button class="offset-btn" onclick="changeOffset(5)">+</button>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <button class="calc-btn" onclick="calculate()">Calculate Sleep Times</button>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <div class="divider"></div>
+    <div class="results-label" id="results-label">Recommended bedtimes</div>
+    <div class="times-grid" id="times-grid"></div>
+    <div class="tip-box">
+      <p id="tip-text"><strong>Pro tip:</strong> The starred time gives you the ideal number of full sleep cycles for most adults.</p>
+    </div>
+    <a class="footer-cta" href="https://www.beverlyhillsbed.com" target="_blank">
+      <span>Shop luxury mattresses at Beverly Hills Bed</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+  // Starfield
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 40; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      --dur: ${2 + Math.random()*4}s;
+      --delay: ${Math.random()*4}s;
+      --max-opacity: ${0.1 + Math.random()*0.5};
+      width: ${Math.random() > 0.8 ? 2 : 1}px;
+      height: ${Math.random() > 0.8 ? 2 : 1}px;
+    `;
+    starsContainer.appendChild(star);
+  }
+
+  let mode = 'wakeup'; // 'wakeup' or 'sleep'
+  let offsetMins = 14;
+
+  function setMode(m) {
+    mode = m;
+    document.getElementById('btn-wakeup').classList.toggle('active', m === 'wakeup');
+    document.getElementById('btn-sleep').classList.toggle('active', m === 'sleep');
+    if (m === 'wakeup') {
+      document.getElementById('input-label').textContent = 'What time do you need to wake up?';
+      document.getElementById('input-icon').textContent = '⏰';
+    } else {
+      document.getElementById('input-label').textContent = 'What time are you going to bed?';
+      document.getElementById('input-icon').textContent = '🌙';
+    }
+    document.getElementById('results').classList.remove('visible');
+  }
+
+  function changeOffset(delta) {
+    offsetMins = Math.max(0, Math.min(60, offsetMins + delta));
+    document.getElementById('offset-display').textContent = offsetMins + ' mins';
+  }
+
+  function formatTime(date) {
+    let h = date.getHours(), m = date.getMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  function minutesToHM(mins) {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    if (m === 0) return `${h}h`;
+    return `${h}h ${m}m`;
+  }
+
+  function calculate() {
+    const val = document.getElementById('time-input').value;
+    if (!val) return;
+    const [hh, mm] = val.split(':').map(Number);
+
+    const ref = new Date();
+    ref.setHours(hh, mm, 0, 0);
+
+    const CYCLE = 90; // minutes
+    const results = [];
+
+    if (mode === 'wakeup') {
+      // Count back 3–6 cycles from wake time, minus fall-asleep offset
+      for (let cycles = 6; cycles >= 3; cycles--) {
+        const totalMins = cycles * CYCLE + offsetMins;
+        const bedtime = new Date(ref.getTime() - totalMins * 60000);
+        results.push({ time: bedtime, cycles, totalSleep: cycles * CYCLE });
+      }
+      document.getElementById('results-label').textContent = 'Go to bed at one of these times';
+    } else {
+      // Count forward 3–6 cycles from sleep time (plus fall-asleep offset)
+      for (let cycles = 3; cycles <= 6; cycles++) {
+        const totalMins = cycles * CYCLE + offsetMins;
+        const wakeTime = new Date(ref.getTime() + totalMins * 60000);
+        results.push({ time: wakeTime, cycles, totalSleep: cycles * CYCLE });
+      }
+      document.getElementById('results-label').textContent = 'Ideal wake-up times';
+    }
+
+    const grid = document.getElementById('times-grid');
+    grid.innerHTML = '';
+    results.forEach((r, i) => {
+      const isBest = r.cycles === 5 || r.cycles === 6 && results.length < 4;
+      const card = document.createElement('div');
+      card.className = 'time-card' + (r.cycles === 5 ? ' best' : '');
+      card.innerHTML = `
+        <div class="cycle-count">${r.cycles} cycles</div>
+        <div class="time-display">${formatTime(r.time)}</div>
+        <div class="sleep-duration">${minutesToHM(r.totalSleep)}</div>
+      `;
+      card.title = 'Click to copy';
+      card.addEventListener('click', () => {
+        navigator.clipboard.writeText(formatTime(r.time)).catch(() => {});
+        showToast();
+      });
+      grid.appendChild(card);
+    });
+
+    document.getElementById('results').classList.add('visible');
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  // Auto-set a sensible default time
+  const now = new Date();
+  if (mode === 'wakeup') {
+    const wake = new Date(now);
+    wake.setHours(7, 0, 0, 0);
+    if (wake < now) wake.setDate(wake.getDate() + 1);
+    document.getElementById('time-input').value = '07:00';
+  }
+</script>
+</body>
+</html>
